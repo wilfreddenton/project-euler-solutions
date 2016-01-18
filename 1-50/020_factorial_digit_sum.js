@@ -9,4 +9,5 @@ function factorialDigitSum(n) {
     return prev + curr;
   });
 }
+
 console.log(factorialDigitSum(100));
