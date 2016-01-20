@@ -1,8 +1,5 @@
-function sum(arr) {
-  return arr.reduce(function(prev, curr) {
-    return prev + curr;
-  });
-}
+var utils = require('../utils');
+
 function divisors(num) {
   var divs = [1];
   for (var i = 2; i <= Math.floor(num / 2); i += 1) {
@@ -10,6 +7,9 @@ function divisors(num) {
       divs.push(i);
   }
   return divs;
+}
+function d(n) {
+  return utils.sum(divisors(n));
 }
 function sumsOfPairs(arr) {
   var sums = [];
@@ -21,7 +21,7 @@ function sumsOfPairs(arr) {
   return sums;
 }
 function isAbundant(num) {
-  return sum(divisors(num)) > num;
+  return d(num) > num;
 }
 function abundantNumbers(upperBound) {
   var nums = [];
@@ -32,9 +32,7 @@ function abundantNumbers(upperBound) {
   return nums;
 }
 function nonAbundantSum(upperBound) {
-  var bools = Array.apply(null, Array(upperBound)).map(function() {
-    return true; // true means does not have abundant addends
-  });
+  var bools = utils.list(upperBound, function() { return true; });
   var abundantNums = abundantNumbers(upperBound);
   var abundantSums = sumsOfPairs(abundantNums);
   abundantSums.forEach(function(sum) {
@@ -46,7 +44,7 @@ function nonAbundantSum(upperBound) {
     else
       return 0;
   });
-  return sum(nonAbundantNums);
+  return utils.sum(nonAbundantNums);
 }
 
 console.log(nonAbundantSum(20161));

@@ -1,3 +1,5 @@
+var sum = require('../utils').sum;
+
 var NUMBERS = [
   37107287533902102798797998220837590246510135740250,
   46376937677490009712648124896970078050417018260538,
@@ -132,9 +134,7 @@ var NUMBERS = [
 //}
 
 function largeSum(numbers, numDigits) {
-  return numbers.reduce(function(prev, curr) {
-    return prev + curr;
-  }).toPrecision(numDigits);
+  return sum(numbers).toPrecision(numDigits);
 }
 
 console.log(largeSum(NUMBERS, 10));

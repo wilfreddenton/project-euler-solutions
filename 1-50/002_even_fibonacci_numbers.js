@@ -1,3 +1,5 @@
+var sum = require('../utils').sum;
+
 function fib(upperBound) {
   var prev = 1;
   var curr = 2;
@@ -10,5 +12,8 @@ function fib(upperBound) {
   }
   return fibs;
 }
+function evenFibNums(upperBound) {
+  return sum(fib(upperBound).filter(function(fib) { return fib % 2 === 0; }));
+}
 
-console.log(fib(4000000).filter(function(fib) { return fib % 2 === 0; }).reduce(function(prev, curr) { return prev + curr }));
+console.log(evenFibNums(4000000));

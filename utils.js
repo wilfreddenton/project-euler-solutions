@@ -1,3 +1,14 @@
+function summation(arr) {
+  return arr.reduce(function(prev, curr) {
+    return prev + curr;
+  });
+}
+function list(len, cb) {
+  var func = cb ? cb : function(_, i) {
+    return i;
+  }
+  return Array.apply(null, Array(len)).map(func);
+}
 function toIntArray(num) {
   return num.toString().split('').map(function(i) { return parseInt(i); });
 }
@@ -57,6 +68,8 @@ function multiply(num, mult) {
 }
 
 module.exports = {
+  sum: summation,
+  list: list,
   add: add,
   multiply: multiply,
   toIntArray: toIntArray

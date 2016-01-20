@@ -1,19 +1,19 @@
+var utils = require('../utils');
+
 function sumOfSquares(upperBound) {
-  var squares = Array.apply(null, Array(upperBound)).map(function(_, i) {
+  var squares = utils.list(upperBound, function(_, i) {
     return Math.pow(i + 1, 2);
   });
-  return squares.reduce(function(prev, curr) {
-    return prev + curr;
-  });
+  return utils.sum(squares);
 }
 function squareOfSum(upperBound) {
-  var sum = 0;
-  for (var i = 1; i <= upperBound; i += 1) {
-    sum += i;
-  }
+  var sum = utils.sum(utils.list(upperBound + 1), function(_, i) {
+    return i + 1;
+  });
   return sum * sum;
 }
 function differenceSumSquare(upperBound) {
   return squareOfSum(upperBound) - sumOfSquares(upperBound);
 }
+
 console.log(differenceSumSquare(100));

@@ -1,8 +1,5 @@
-function sum(arr) {
-  return arr.reduce(function(prev, curr) {
-    return prev + curr;
-  });
-}
+var utils = require('../utils');
+
 function divisors(num) {
   var divs = [1];
   for (var i = 2; i <= Math.floor(num / 2); i += 1) {
@@ -12,12 +9,10 @@ function divisors(num) {
   return divs;
 }
 function d(n) {
-  return sum(divisors(n));
+  return utils.sum(divisors(n));
 }
 function amicableNumbers(upperBound) {
-  var bools = Array.apply(null, Array(upperBound - 1)).map(function() {
-    return false;
-  });
+  var bools = utils.list(upperBound - 1, function() { return false; });
   for (var i = 1; i < upperBound; i += 1) {
     var sum = d(i);
     if (!bools[i - 1] && sum < upperBound && sum !== i && d(sum) === i) {
@@ -33,4 +28,4 @@ function amicableNumbers(upperBound) {
   });
 }
 
-console.log(sum(amicableNumbers(10000)));
+console.log(utils.sum(amicableNumbers(10000)));
